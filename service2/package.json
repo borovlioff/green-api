@@ -1,0 +1,22 @@
+{
+  "name": "service2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.10.3",
+    "pino": "^8.14.1",
+    "task": "github:borovlioff/Task",
+    "uuidv4": "^6.2.13"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.1",
+    "typescript": "^5.1.6"
+  }
+}

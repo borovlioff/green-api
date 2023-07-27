@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  rabbitmq:
+    image: rabbitmq:management 
+    container_name: rabbitmq
+    ports:
+      - "5672:5672" 
+      - "15672:15672" 
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
+  service1:
+    build: ./service1
+    container_name: service1
+    environment:
+      RMQ_EXCHANGE_NAME: Task
+      RMQ_QUEUE_NAME: queueTask
+      RMQ_ROUTING_KEY: keyTask
+    depends_on:
+      - rabbitmq 
+    ports:
+      - "3000:3000" 
+
+  service2:
+    depends_on:
+      - rabbitmq 
+    build: ./service2
+    environment:
+      RMQ_EXCHANGE_NAME: Task
+      RMQ_QUEUE_NAME: queueTask
+      RMQ_ROUTING_KEY: keyTask
+    container_name: service2
+    
+
+volumes:
+  rabbitmq_data: 
